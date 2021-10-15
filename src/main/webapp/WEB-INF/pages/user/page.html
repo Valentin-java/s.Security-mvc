@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница Cars</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1>Ваша персональная страница</h1>
+    <h2><a th:href="@{/logout}">Выход из учетной записи</a></h2>
+
+    <table border="1">
+        <tr>
+            <th>Ваш user_id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Эл.Почта</th>
+
+        </tr>
+        <tr th:object="${user}">
+
+            <td th:text="${user.getId()}">Количество</td>
+            <td th:text="${user.getFirstName()}">Имя</td>
+            <td th:text="${user.getLastName()}">Фамилия</td>
+            <td th:text="${user.getEmail()}">Эл.Почта</td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

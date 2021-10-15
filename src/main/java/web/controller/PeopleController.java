@@ -11,7 +11,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/admin")
 public class PeopleController {
 
     @Autowired
@@ -21,37 +21,39 @@ public class PeopleController {
     public String index(Model model) {
         List<User> users = userService.listUsers();
         model.addAttribute("people", users);
-        return "people/index";
+        return "admin/index";
     }
 
     @GetMapping("/{id}/edit")
     public String show(@PathVariable("id") long id, Model model) {
         model.addAttribute("person", userService.getUserById(id));
-        return "people/edit";
+        return "admin/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") User user, @PathVariable("id") long id) {
         userService.update(id, user);
-        return "redirect:people/index";
+        return "redirect:admin/index";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.removeUserById(id);
-        return "redirect: people/index";
+        return "redirect: admin/index";
     }
 
     @GetMapping("/new")
     public String create(Model model) {
         model.addAttribute("person", new User());
-        return "/people/new";
+        return "admin/new";
     }
 
     @PostMapping()
     public String add(@ModelAttribute("person") User user) {
         userService.add(user);
-        return "people/index";
+        return "admin/index";
     }
+
+
 
 }

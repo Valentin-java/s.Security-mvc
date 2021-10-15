@@ -12,7 +12,29 @@
     </th:block>
 
 
-    <a href="/cars?count=1">Таблица с машинами</a> или <a href="/people/index">Работа с БД</a>
+    <table>
+
+        <tr>
+            <td>
+                <form action="admin/index">
+                    <button type="submit">Вход для администратора</button>
+                </form>
+            </td>
+
+            <td>
+                <form action="user/page">
+                    <button type="submit">Вход для пользователя</button>
+                </form>
+            </td>
+
+            <td>
+                <form action="/cars?count=1">
+                    <button type="submit">Вход для страницы с авто(get запросы)</button>
+                </form>
+            </td>
+        </tr>
+
+    </table>
 </div>
 </body>
 </html>
