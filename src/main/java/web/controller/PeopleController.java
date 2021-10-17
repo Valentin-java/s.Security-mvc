@@ -25,7 +25,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}/edit")
-    public String show(@PathVariable("id") long id, Model model) {
+    public String updateForm(@PathVariable("id") long id, Model model) {
         model.addAttribute("person", userService.getUserById(id));
         return "admin/edit";
     }
@@ -39,11 +39,11 @@ public class PeopleController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.removeUserById(id);
-        return "redirect: admin/index";
+        return "redirect: index";
     }
 
     @GetMapping("/new")
-    public String create(Model model) {
+    public String addForm(Model model) {
         model.addAttribute("person", new User());
         return "admin/new";
     }
@@ -51,7 +51,7 @@ public class PeopleController {
     @PostMapping()
     public String add(@ModelAttribute("person") User user) {
         userService.add(user);
-        return "admin/index";
+        return "redirect: admin/index";
     }
 
 

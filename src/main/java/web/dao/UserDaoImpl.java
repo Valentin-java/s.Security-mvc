@@ -25,8 +25,6 @@ public class UserDaoImpl implements UserDao {
     private RoleDao roleDao;
 
 
-
-
     @Override
     public User findByFirstName(String firstName) {
         EntityManager em = entityManagerFactory.createEntityManager();
@@ -36,13 +34,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {
+        EntityManager em = entityManagerFactory.createEntityManager();
 
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
         roles.add(roleDao.getById(1L));
         user.setRoles(roles);
 
-        EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         if (user.getId() == null) {
             em.persist(user);

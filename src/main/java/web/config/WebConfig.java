@@ -111,7 +111,7 @@ public class WebConfig implements WebMvcConfigurer {
         return em;
     }
     @Bean
-    public PlatformTransactionManager platformTransactionManager() {
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager tm = new JpaTransactionManager();
         tm.setEntityManagerFactory(entityManagerFactory().getObject());
         return tm;
